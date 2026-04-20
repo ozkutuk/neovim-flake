@@ -41,7 +41,6 @@ mnw.lib.wrap pkgs {
         p.tree-sitter-lua
         p.tree-sitter-todotxt
       ]))
-      harpoon2
       smart-splits-nvim
       neotest
       blink-cmp
