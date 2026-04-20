@@ -21,7 +21,7 @@ mnw.lib.wrap pkgs {
       # Themes / UI
       nightfox-nvim
       lualine-nvim
-      lsp_lines-nvim
+      tiny-inline-diagnostic-nvim
       fidget-nvim
 
       # Language-agnostic

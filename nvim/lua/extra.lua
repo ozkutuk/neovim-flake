@@ -52,7 +52,7 @@ vim.keymap.set("n", "S", function()
   }
 end)
 
-require("lsp_lines").setup {}
+require("tiny-inline-diagnostic").setup {}
 
 require("fidget").setup {}
 
@@ -250,7 +250,9 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+  vim.keymap.set("n", "K", function()
+    vim.lsp.buf.hover { border = "single" }
+  end, bufopts)
   -- Following are not supported by HLS
   -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -263,7 +265,7 @@ local on_attach = function(client, bufnr)
   end, bufopts)
 
   vim.api.nvim_command(
-    [[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
+    [[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.enable(true)]]
   )
   vim.api.nvim_buf_set_keymap(
     bufnr,
@@ -272,10 +274,6 @@ local on_attach = function(client, bufnr)
     "<Cmd>lua vim.lsp.codelens.run()<CR>",
     { silent = true }
   )
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "single",
-  })
 
   -- hack: HLS has Cabal file support but doesn't provide inlay hints for it,
   -- so we explicitly disallow inlay hints for Cabal files
