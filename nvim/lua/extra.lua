@@ -365,6 +365,8 @@ require("mini.icons").setup {
 }
 require("mini.bracketed").setup {}
 require("mini.ai").setup {}
+require("mini.trailspace").setup {}
+require("mini.jump").setup {}
 
 local miniclue = require("mini.clue")
 miniclue.setup {
