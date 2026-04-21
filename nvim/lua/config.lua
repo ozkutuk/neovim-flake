@@ -1,63 +1,63 @@
 local tab_width = 4
-vim.opt.tabstop = tab_width
-vim.opt.softtabstop = tab_width
-vim.opt.shiftwidth = tab_width
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+vim.o.tabstop = tab_width
+vim.o.softtabstop = tab_width
+vim.o.shiftwidth = tab_width
+vim.o.expandtab = true
+vim.o.smartindent = true
 
-vim.opt.termguicolors = true
-vim.opt.colorcolumn = "110"
+vim.o.termguicolors = true
+vim.o.colorcolumn = "110"
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ",,"
 
 -- Set 7 lines to the cursor - when moving vertically using j/k
-vim.opt.scrolloff = 7
-vim.opt.relativenumber = true
+vim.o.scrolloff = 7
+vim.o.relativenumber = true
 
 -- show matching parens
-vim.opt.showmatch = true
-vim.opt.mat = 2
+vim.o.showmatch = true
+vim.o.mat = 2
 
 -- lualine shows mode anyway
-vim.opt.showmode = false
-vim.opt.cursorline = true
+vim.o.showmode = false
+vim.o.cursorline = true
 
 -- report changes regardless of changed line count
-vim.opt.report = 0
+vim.o.report = 0
 
 -- column limit on the searched syntax items (possibly remove this?)
--- vim.opt.synmaxcol = 200
+-- vim.o.synmaxcol = 200
 
-vim.opt.foldenable = false
+vim.o.foldenable = false
 
 -- Enable break indent
-vim.opt.breakindent = true
+vim.o.breakindent = true
 
 -- Save undo history
-vim.opt.undofile = true
+vim.o.undofile = true
 
 -- Case-insensitive searching unless \C or one or more capital letters
 -- in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+vim.o.signcolumn = "yes"
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays mini.clue popup sooner (I hope)
-vim.opt.timeoutlen = 300
+vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Sets how Neovim will display certain whitespace characters
-vim.opt.list = true
+vim.o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
