@@ -17,14 +17,6 @@ end
 
 vim.keymap.set("n", "<F2>", toggle_theme)
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "make",
-  callback = function()
-    vim.opt.softtabstop = 0
-    vim.opt.expandtab = false
-  end,
-})
-
 vim.api.nvim_create_autocmd("CompleteDone", {
   pattern = "*",
   callback = function()
