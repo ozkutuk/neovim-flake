@@ -30,6 +30,13 @@ vim.filetype.add {
   },
 }
 
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>u", function()
+  require("undotree").open {
+    command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
+  }
+end, { desc = "Toggle Undotree" })
+
 require("lualine").setup {}
 
 vim.keymap.set({ "n", "x", "o" }, "s", function()
