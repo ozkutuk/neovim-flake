@@ -51,7 +51,13 @@ vim.keymap.set("n", "S", function()
   }
 end)
 
-require("tiny-inline-diagnostic").setup {}
+require("tiny-inline-diagnostic").setup {
+  options = {
+    multilines = {
+      enabled = true,
+    },
+  },
+}
 
 require("fidget").setup {}
 
