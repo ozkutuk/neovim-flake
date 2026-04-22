@@ -2,11 +2,11 @@
 
 mnw.lib.wrap pkgs {
   appName = "nvim-ozkutuk";
-  neovim = pkgs.neovim-unwrapped;  # must be unwrapped per mnw docs
+  neovim = pkgs.neovim-unwrapped; # must be unwrapped per mnw docs
 
   luaFiles = [
     ./init.lua
-    ];
+  ];
 
   plugins = {
     dev.config = {
