@@ -202,7 +202,7 @@ require("blink.cmp").setup {
       tmux = {
         module = "blink-cmp-tmux",
         name = "Tmux",
-        transform_items = function(ctx, items)
+        transform_items = function(_, items)
           for _, item in ipairs(items) do
             -- FIXME(ozkutuk): this icon can't be rendered and I don't know why
             -- local kind_icon, _, _ = require('mini.icons').get('filetype', 'tmux')
@@ -234,8 +234,12 @@ vim.api.nvim_create_autocmd("FileType", {
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.jump { count = -1 }
+end, opts)
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.jump { count = 1 }
+end, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 vim.diagnostic.config {
   float = { border = "single" },
@@ -247,10 +251,6 @@ vim.api.nvim_set_hl(0, "NormalFloat", { background = "None", foreground = "None"
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
-
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
