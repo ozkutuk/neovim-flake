@@ -287,6 +287,15 @@ local on_attach = function(client, bufnr)
   end
 end
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("my.lsp", {}),
+  callback = function(ev)
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+    local bufnr = ev.buf
+    on_attach(client, bufnr)
+  end,
+})
+
 local function make_hls_command()
   local cmd = {}
   if vim.env.NVIM_HLS_PATH then
@@ -302,7 +311,6 @@ local function make_hls_command()
 end
 
 vim.lsp.config("hls", {
-  on_attach = on_attach,
   filetypes = { "haskell", "lhaskell", "cabal" },
   cmd = make_hls_command(),
   settings = {
@@ -317,25 +325,7 @@ vim.lsp.config("hls", {
     },
   },
 })
-vim.lsp.enable("hls")
-
-vim.lsp.config("zls", {
-  on_attach = on_attach,
-})
-vim.lsp.enable("zls")
-
-vim.lsp.config("ccls", {
-  on_attach = on_attach,
-})
-vim.lsp.enable("ccls")
-
-vim.lsp.config("elmls", {
-  on_attach = on_attach,
-})
-vim.lsp.enable("elmls")
-
 vim.lsp.config("nil_ls", {
-  on_attach = on_attach,
   settings = {
     ["nil"] = {
       formatting = {
@@ -344,21 +334,14 @@ vim.lsp.config("nil_ls", {
     },
   },
 })
-vim.lsp.enable("nil_ls")
 
-vim.lsp.config("dhall_lsp_server", {
-  on_attach = on_attach,
-})
-vim.lsp.enable("dhall_lsp_server")
-
-vim.lsp.config("tinymist", {
-  on_attach = on_attach,
-})
-vim.lsp.enable("tinymist")
+vim.lsp.enable { "hls", "zls", "ccls", "elmls", "nil_ls", "dhall_lsp_server", "tinymist", "lua_ls" }
 
 require("typst-preview").setup {}
 
 require("lean").setup { mappings = true }
+
+require("lazydev").setup {}
 
 require("mini.comment").setup {}
 require("mini.icons").setup {

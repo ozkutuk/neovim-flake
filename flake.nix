@@ -4,7 +4,7 @@
     mnw.url = "github:Gerg-L/mnw";
   };
 
-  outputs = { self, nixpkgs, mnw }: 
+  outputs = { self, nixpkgs, mnw }:
   let
     lib = nixpkgs.lib;
     supportedSystems = [ "x86_64-linux" ];
@@ -22,6 +22,8 @@
         packages = [
           self.packages.${pkgs.stdenv.hostPlatform.system}.default.devMode
           pkgs.stylua
+          pkgs.nil
+          pkgs.lua-language-server
         ];
       };
     });

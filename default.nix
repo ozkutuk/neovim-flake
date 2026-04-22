@@ -25,6 +25,7 @@ mnw.lib.wrap pkgs {
       fidget-nvim
 
       # Language-agnostic
+      nvim-lspconfig
       vim-fugitive
       gitsigns-nvim
       nvim-surround
@@ -63,6 +64,7 @@ mnw.lib.wrap pkgs {
       vim-syntax-shakespeare
       lean-nvim
       typst-preview-nvim
+      lazydev-nvim
     ];
   };
 }
