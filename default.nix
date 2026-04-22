@@ -1,8 +1,5 @@
 { pkgs, mnw }:
 
-let
-  args = { inherit pkgs; };
-in
 mnw.lib.wrap pkgs {
   appName = "nvim-ozkutuk";
   neovim = pkgs.neovim-unwrapped;  # must be unwrapped per mnw docs
@@ -26,6 +23,7 @@ mnw.lib.wrap pkgs {
 
       # Language-agnostic
       nvim-lspconfig
+      conform-nvim
       vim-fugitive
       gitsigns-nvim
       nvim-surround

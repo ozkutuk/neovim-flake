@@ -265,9 +265,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-  vim.keymap.set("n", "<space>f", function()
-    vim.lsp.buf.format { async = true }
-  end, bufopts)
 
   vim.api.nvim_command(
     [[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.enable(true)]]
@@ -342,6 +339,21 @@ require("typst-preview").setup {}
 require("lean").setup { mappings = true }
 
 require("lazydev").setup {}
+
+require("conform").setup {
+  formatters_by_ft = {
+    lua = { "stylua" },
+    nix = { "alejandra", "nixfmt", stop_after_first = true },
+    haskell = { "fourmolu", lsp_format = "fallback" },
+    cabal = { "cabal-gild", lsp_format = "fallback" },
+  },
+}
+
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+vim.keymap.set("n", "<space>f", function()
+  require("conform").format { async = true }
+end)
 
 require("mini.comment").setup {}
 require("mini.icons").setup {
