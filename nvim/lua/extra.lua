@@ -281,34 +281,24 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local function make_hls_command(use_local, dbg)
+local function make_hls_command()
   local cmd = {}
-
-  if use_local then
-    local ghc_version = "9.10.3"
-    local hls_version = "2.13.0.0"
-    local hls_path = "/home/ozkutuk/dev/haskell-language-server/dist-newstyle/build/x86_64-linux/ghc-"
-      .. ghc_version
-      .. "/haskell-language-server-"
-      .. hls_version
-      .. "/x/haskell-language-server/build/haskell-language-server/haskell-language-server"
-    table.insert(cmd, hls_path)
+  if vim.env.NVIM_HLS_PATH then
+    table.insert(cmd, vim.env.NVIM_HLS_PATH)
   else
     table.insert(cmd, "haskell-language-server-wrapper")
   end
-
   table.insert(cmd, "--lsp")
-  if dbg then
+  if vim.env.NVIM_HLS_DEBUG then
     table.insert(cmd, "--debug")
   end
-
   return cmd
 end
 
 vim.lsp.config("hls", {
   on_attach = on_attach,
   filetypes = { "haskell", "lhaskell", "cabal" },
-  cmd = make_hls_command(true, true),
+  cmd = make_hls_command(),
   settings = {
     ["haskell"] = {
       formattingProvider = "fourmolu",
