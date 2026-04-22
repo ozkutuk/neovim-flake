@@ -138,8 +138,14 @@ ls.setup {
   update_events = { "TextChanged", "TextChangedI" },
 }
 
+local fmt = require("luasnip.extras.fmt").fmt
+
 local haskell_snippets = require("haskell-snippets").all
 ls.add_snippets("haskell", haskell_snippets, { key = "haskell" })
+
+ls.add_snippets('haskell', {
+  ls.s("ks", fmt("type {} :: Type", { ls.i(1) })),
+})
 
 vim.keymap.set({ "i", "s" }, "<C-k>", function()
   if ls.expand_or_jumpable() then
