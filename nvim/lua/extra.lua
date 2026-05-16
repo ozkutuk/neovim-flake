@@ -27,9 +27,9 @@ vim.api.nvim_create_autocmd("CompleteDone", {
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('my.highlight-yank', { clear = true }),
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("my.highlight-yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -143,7 +143,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 local haskell_snippets = require("haskell-snippets").all
 ls.add_snippets("haskell", haskell_snippets, { key = "haskell" })
 
-ls.add_snippets('haskell', {
+ls.add_snippets("haskell", {
   ls.s("ks", fmt("type {} :: Type", { ls.i(1) })),
 })
 
@@ -552,3 +552,7 @@ vim.keymap.set(
   require("smart-splits").swap_buf_right,
   { desc = "Swap buffer: right" }
 )
+
+vim.keymap.set("n", "<leader>ih", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints" })
