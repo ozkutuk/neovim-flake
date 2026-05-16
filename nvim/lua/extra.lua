@@ -363,6 +363,7 @@ require("conform").setup {
     nix = { "alejandra", "nixfmt", stop_after_first = true },
     haskell = { "fourmolu", lsp_format = "fallback" },
     cabal = { "cabal-gild", lsp_format = "fallback" },
+    zig = { "zigfmt", lsp_format = "fallback" },
   },
 }
 
@@ -370,7 +371,7 @@ vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.keymap.set("n", "<space>f", function()
   require("conform").format { async = true }
-end)
+end, { desc = "Format" })
 
 require("mini.comment").setup {}
 require("mini.icons").setup {
