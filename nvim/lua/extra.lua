@@ -364,6 +364,7 @@ require("conform").setup {
     haskell = { "fourmolu", lsp_format = "fallback" },
     cabal = { "cabal-gild", lsp_format = "fallback" },
     zig = { "zigfmt", lsp_format = "fallback" },
+    rust = { "rustfmt", lsp_format = "fallback" },
   },
 }
 
