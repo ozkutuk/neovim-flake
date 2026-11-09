@@ -349,7 +349,17 @@ vim.lsp.config("nil_ls", {
   },
 })
 
-vim.lsp.enable { "hls", "zls", "ccls", "elmls", "nil_ls", "dhall_lsp_server", "tinymist", "lua_ls" }
+vim.lsp.enable {
+  "hls",
+  "zls",
+  "ccls",
+  "elmls",
+  "nil_ls",
+  "dhall_lsp_server",
+  "tinymist",
+  "lua_ls",
+  "rust_analyzer",
+}
 
 require("typst-preview").setup {}
 
